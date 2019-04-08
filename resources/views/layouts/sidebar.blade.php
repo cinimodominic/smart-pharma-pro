@@ -26,10 +26,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>  
-        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="/data"><i class="fa fa-users"></i> <span>Data</span></a></li>
-        <li><a href="/rep"><i class="fa fa-user"></i> <span>Representative</span></a></li>
-        <li><a href="/script"><i class="fa fa-file-text-o"></i> <span>Script</span></a></li>
+        <li class="{{ set_active('dashboard*') }}"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="{{ set_active('data*') }}"><a href="/data"><i class="fa fa-users"></i> <span>Data</span></a></li>
+        <li class="{{ set_active('rep*') }}"><a href="/rep"><i class="fa fa-user"></i> <span>Representative</span></a></li>
+        <li class="{{ set_active('script*') }}"><a href="/script"><i class="fa fa-file-text-o"></i> <span>Script</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
