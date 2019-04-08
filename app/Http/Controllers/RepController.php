@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Representative;
 
 class RepController extends Controller
 {
@@ -18,7 +21,10 @@ class RepController extends Controller
      */
     public function index()
     {
-        return view('rep');
+        return view('rep', [
+            'roles' => Role::all(),
+            'representatives' => Representative::all()
+        ]);
     }
 
     /**
@@ -39,7 +45,26 @@ class RepController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'first_name' => 'required|max:60',
+            'last_name' => 'required|max:60',
+            'company_name' => 'nullable',
+            'email' => 'required|unique:representatives'
+        ]);
+
+        $representative = new Representative;
+
+        $representative->first_name = $request->first_name;
+        $representative->last_name = $request->last_name;
+        $representative->company_name = $request->company_name;
+        $representative->email = $request->email;
+        $representative->assignRole($request->role);
+
+        $representative->save();
+
+        session()->flash('message', 'Representative created.');
+
+        return redirect('/rep');
     }
 
     /**

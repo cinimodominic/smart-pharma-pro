@@ -14,6 +14,9 @@
         </ol>
     </section>
     <section class="content">
+			@if (session()->has('message'))
+				<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4>{{ session()->get('message') }}</div>
+			@endif
 			<div class="row">
 					<!-- left column -->
 					<div class="col-md-6">
@@ -29,30 +32,51 @@
 											<div class="box-body">
 											    <div class="form-group">
 											        <label for="exampleInputEmail1">First Name</label>
-											        <input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name">
+											        <input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name" value="{{ old('first_name') }}">
 											    </div>
 											    <div class="form-group">
 											        <label for="exampleInputPassword1">Last Name</label>
-											        <input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name">
+											        <input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name" value="{{ old('last_name') }}">
 											    </div>
 											    <div class="form-group">
 											        <label for="exampleInputPassword1">Company Name</label>
-											        <input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name">
+											        <input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name" value="{{ old('company_name') }}">
 											    </div>
 											    <div class="form-group">
 											        <label for="exampleInputEmail1">Email Address</label>
-											        <input type="email" class="form-control" id="email" placeholder="Email..." name="email">
+											        <input type="email" class="form-control" id="email" placeholder="Email..." name="email" value="{{ old('email') }}">
 											    </div>
 											    <!-- radio -->
 											    <div class="form-group">
 														<label>Select Role</label>
-														<select class="form-control" name="role_id">
-															<option value="1">User</option>
-															<option value="2">Admin</option>
+														<select class="form-control" name="role">
+
+															@if (Session::has('message'))
+																<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4>{{ Session::get('message') }}</div>
+															@endif
+
+															@foreach($roles as $role)
+															<option value="{{ $role->name }}">{{ ucwords($role->name) }}</option>
+															@endforeach
+
 														</select>
 													</div>
-											</div>
+
+													@if ($errors->any())
+													<div class="alert alert-danger">
+															<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+													    <ul>
+													        @foreach ($errors->all() as $error)
+													        <li>{{ $error }}</li>
+													        @endforeach
+													    </ul>
+													</div>
+													@endif
+
+													</div>
 											<!-- /.box-body -->
+
+											
 
 											<div class="box-footer">
 													<button type="submit" class="btn btn-primary">Submit</button>
@@ -80,21 +104,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-									<td>test@gmail.com</td>
-									<td>User</td>
-                  <td>
-										<div class="btn-group">
-                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
-											<button type="button" class="btn btn-warning">Delete</button>
-										</div>
-									</td>
-                </tr>
-                </tfoot>
+									@foreach($representatives as $representative)
+									<tr data-id="{{ $representative->id }}">
+										<td>{{ $representative->fullName() }}</td>
+										<td>{{ $representative->company_name }}</td>
+										<td>{{ $representative->email }}</td>
+										<td>{{ ucwords($representative->roles->first()->name) }}</td>
+										<td>
+												<div class="btn-group">
+													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
+													<button type="button" class="btn btn-warning">Delete</button>
+												</div>
+											</td>
+									</tr>
+									@endforeach
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->
@@ -135,8 +159,8 @@
 												<div class="form-group">
 													<label>Select Role</label>
 													<select class="form-control" name="role_id">
-														<option value="1">User</option>
-														<option value="2">Admin</option>
+														<option value="1">Admin</option>
+														<option value="2">User</option>
 													</select>
 												</div>
 										</div>
