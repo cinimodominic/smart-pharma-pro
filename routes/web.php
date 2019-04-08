@@ -16,3 +16,6 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/data', 'DataController@index')->name('data');
+Route::get('/rep', 'RepController@index')->name('rep');
+Route::get('/script', 'ScriptController@index')->name('script');
