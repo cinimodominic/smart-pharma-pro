@@ -24,43 +24,32 @@
 									</div>
 									<!-- /.box-header -->
 									<!-- form start -->
-									<form role="form">
+									<form method="POST" action="{{ action('RepController@store') }}" role="form">
+											@csrf
 											<div class="box-body">
-													<div class="form-group">
-															<label for="exampleInputEmail1">First name</label>
-															<input type="text" class="form-control" id="firstname"
-																	placeholder="Enter First name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputPassword1">Last name</label>
-															<input type="text" class="form-control" id="lastname"
-																	placeholder="Last name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputPassword1">Company name</label>
-															<input type="text" class="form-control" id="company_name"
-																	placeholder="Enter Company name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputEmail1">Email address</label>
-															<input type="email" class="form-control" id="email"
-																	placeholder="Enter email">
-													</div>
-													<!-- radio -->
-													<div class="form-group">
-															<div class="radio">
-																	<label>
-																			<input type="radio" name="optionsRadios" id="status1" value="option1"
-																					checked>
-																			This user can see everything I see
-																	</label>
-															</div>
-															<div class="radio">
-																	<label>
-																			<input type="radio" name="optionsRadios" id="status2" value="option2">
-																			This user can see what they submit and everyone they add under them
-																	</label>
-															</div>
+											    <div class="form-group">
+											        <label for="exampleInputEmail1">First Name</label>
+											        <input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name">
+											    </div>
+											    <div class="form-group">
+											        <label for="exampleInputPassword1">Last Name</label>
+											        <input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name">
+											    </div>
+											    <div class="form-group">
+											        <label for="exampleInputPassword1">Company Name</label>
+											        <input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name">
+											    </div>
+											    <div class="form-group">
+											        <label for="exampleInputEmail1">Email Address</label>
+											        <input type="email" class="form-control" id="email" placeholder="Email..." name="email">
+											    </div>
+											    <!-- radio -->
+											    <div class="form-group">
+														<label>Select Role</label>
+														<select class="form-control" name="role_id">
+															<option value="1">User</option>
+															<option value="2">Admin</option>
+														</select>
 													</div>
 											</div>
 											<!-- /.box-body -->
@@ -86,7 +75,7 @@
                   <th>Name</th>
                   <th>Company name</th>
                   <th>Email Address</th>
-									<th>Privileges</th>
+									<th>User Type</th>
 									<th>Action</th>
                 </tr>
                 </thead>
@@ -96,8 +85,8 @@
                   <td>Internet
                     Explorer 4.0
                   </td>
-									<td>Win 95+</td>
-									<td>Win 95+</td>
+									<td>test@gmail.com</td>
+									<td>User</td>
                   <td>
 										<div class="btn-group">
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
@@ -125,50 +114,38 @@
 						<div class="modal-body">
 								<!-- form start -->
 								<form role="form">
-											<div class="box-body">
-													<div class="form-group">
-															<label for="exampleInputEmail1">First name</label>
-															<input type="text" class="form-control" id="firstname"
-																	placeholder="Enter First name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputPassword1">Last name</label>
-															<input type="text" class="form-control" id="lastname"
-																	placeholder="Last name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputPassword1">Company name</label>
-															<input type="text" class="form-control" id="company_name"
-																	placeholder="Enter Company name">
-													</div>
-													<div class="form-group">
-															<label for="exampleInputEmail1">Email address</label>
-															<input type="email" class="form-control" id="email"
-																	placeholder="Enter email">
-													</div>
-													<!-- radio -->
-													<div class="form-group">
-															<div class="radio">
-																	<label>
-																			<input type="radio" name="optionsRadios" id="status1" value="option1"
-																					checked>
-																			This user can see everything I see
-																	</label>
-															</div>
-															<div class="radio">
-																	<label>
-																			<input type="radio" name="optionsRadios" id="status2" value="option2">
-																			This user can see what they submit and everyone they add under them
-																	</label>
-															</div>
-													</div>
-											</div>
+										<div class="box-body">
+												<div class="form-group">
+														<label for="exampleInputEmail1">First Name</label>
+														<input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name">
+												</div>
+												<div class="form-group">
+														<label for="exampleInputPassword1">Last Name</label>
+														<input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name">
+												</div>
+												<div class="form-group">
+														<label for="exampleInputPassword1">Company Name</label>
+														<input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name">
+												</div>
+												<div class="form-group">
+														<label for="exampleInputEmail1">Email Address</label>
+														<input type="email" class="form-control" id="email" placeholder="Email..." name="email">
+												</div>
+												<!-- radio -->
+												<div class="form-group">
+													<label>Select Role</label>
+													<select class="form-control" name="role_id">
+														<option value="1">User</option>
+														<option value="2">Admin</option>
+													</select>
+												</div>
+										</div>
 											<!-- /.box-body -->
 									</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-outline">Save changes</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default">Update</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
