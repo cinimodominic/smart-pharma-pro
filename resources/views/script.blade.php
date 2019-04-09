@@ -16,7 +16,7 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -28,63 +28,142 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">First name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="First name">
+                                <input type="email" class="form-control" id="firstname" placeholder="First name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Last name</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Last name">
+                                <input type="password" class="form-control" id="lastname" placeholder="Last name">
                             </div>
                             <div class="form-group">
 															<label>Patient Address</label>
-															<textarea class="form-control" rows="3" placeholder="Enter Patient Address"></textarea>
+															<textarea class="form-control" rows="3" placeholder="patient_address"></textarea>
 														</div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Member Id</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Member Id">
+                                <input type="email" class="form-control" id="member_id" placeholder="Enter Member Id">
 														</div>
 														<div class="form-group">
                                 <label for="exampleInputEmail1">DOB</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter DOB">
+                                <input type="email" class="form-control" id="dob" placeholder="Enter DOB">
 														</div>
 														<div class="form-group">
-															<label>US phone mask:</label>
-
-															<div class="input-group">
-																<div class="input-group-addon">
-																	<i class="fa fa-phone"></i>
-																</div>
-																<input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(999) 999-9999&quot;" data-mask="">
-															</div>
-															<!-- /.input group -->
+                                <label for="exampleInputEmail1">Cellpone number</label>
+                                <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number">
 														</div>
-                            <!-- radio -->
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        RX
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        DME
-                                    </label>
-                                </div>
-                            </div>
+														<div class="form-group">
+															<label>Medical type</label>
+															<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+																<option selected="selected">RX</option>
+																<option>DME</option>
+															</select>
                         </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer">
+												<!-- /.box-body -->
+												<div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
                 <!-- /.box -->
             </div>
-            <!--/.col (right) -->
+						<!--/.col (right) -->
         </div>
-
+				<div class="col-sm-8">
+							<div class="box box-primary">
+								<div class="box-header">
+									<h3 class="box-title">Representative List</h3>
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body">
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+											<th>Name</th>
+											<th>Address</th>
+											<th>Member ID</th>
+											<th>DOB</th>
+											<th>Contact number</th>
+											<th>Action</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>Trident</td>
+											<td>Internet
+												Explorer 4.0
+											</td>
+											<td>test@gmail.com</td>
+											<td>User</td>
+											<td>User</td>
+											<td>
+												<div class="btn-group">
+													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
+													<button type="button" class="btn btn-warning">Delete</button>
+												</div>
+											</td>
+										</tr>
+										</tfoot>
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+						<div class="modal modal-defaut fade" id="modal-success">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Edit Script</h4>
+						</div>
+						<div class="modal-body">
+							<!-- form start -->
+							<form role="form">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">First name</label>
+                                <input type="email" class="form-control" id="firstname" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Last name</label>
+                                <input type="password" class="form-control" id="lastname" placeholder="Last name">
+                            </div>
+                            <div class="form-group">
+															<label>Patient Address</label>
+															<textarea class="form-control" rows="3" placeholder="patient_address"></textarea>
+														</div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Member Id</label>
+                                <input type="email" class="form-control" id="member_id" placeholder="Enter Member Id">
+														</div>
+														<div class="form-group">
+                                <label for="exampleInputEmail1">DOB</label>
+                                <input type="email" class="form-control" id="dob" placeholder="Enter DOB">
+														</div>
+														<div class="form-group">
+                                <label for="exampleInputEmail1">Cellpone number</label>
+                                <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number">
+														</div>
+														<div class="form-group">
+															<label>Medical type</label>
+															<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+																<option selected="selected">RX</option>
+																<option>DME</option>
+															</select>
+                        </div>
+												<!-- /.box-body -->
+                    </form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default">Update</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
     </section>
 </div>
 <!-- /.content-wrapper -->
