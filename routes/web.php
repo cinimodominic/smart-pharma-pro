@@ -27,3 +27,4 @@ Route::post('/rep', 'RepController@store');
 Route::get('/users', 'RepController@users')->middleware('auth');
 Route::get('/users/{user}', 'RepController@show')->middleware('auth');
 Route::patch('/users/{user}', 'RepController@update');
+Route::patch('/users/delete/{user}', 'RepController@destroy');

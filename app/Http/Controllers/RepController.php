@@ -129,7 +129,11 @@ class RepController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        
+        $user->delete();
+        
+        session()->flash('message', 'Successfully deleted!');
     }
 
     public function users()

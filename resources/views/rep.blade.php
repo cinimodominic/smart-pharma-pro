@@ -19,7 +19,7 @@
 			@endif
 			<div class="row">
 					<!-- left column -->
-					<div class="col-md-6">
+					<div class="col-md-4">
 							<!-- general form elements -->
 							<div class="box box-primary">
 									<div class="box-header with-border">
@@ -83,9 +83,6 @@
 
 													</div>
 											<!-- /.box-body -->
-
-											
-
 											<div class="box-footer">
 													<button type="submit" class="btn btn-primary">Submit</button>
 											</div>
@@ -94,7 +91,7 @@
 							<!-- /.box -->
 					</div>
 					<!--/.col (right) -->
-					<div class="col-md-6">
+					<div class="col-md-8">
 					<div class="box">
             <div class="box-header">
               <h3 class="box-title">Representative List</h3>
@@ -121,7 +118,7 @@
 										<td>
 												<div class="btn-group">
 													<button type="button" class="btn btn-default btn-edit" data-toggle="modal" data-target="#modal-success">Edit</button>
-													<button type="button" class="btn btn-warning">Delete</button>
+													<button type="button" class="btn btn-warning show-delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
 												</div>
 											</td>
 									</tr>
@@ -186,7 +183,27 @@
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
-
+			<div class="modal modal-defaut fade" id="modal-delete">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Message</h4>
+						</div>
+						<div class="modal-body">
+								Are you sure you want to delete <strong id="msg_firstname" class></strong>'s details ?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default btn-modal-close" data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-default btn-delete">Delete</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
     </section>
 </div>
 <!-- /.content-wrapper -->
@@ -221,7 +238,7 @@ $(function() {
 	});
 
 	$('.btn-update').on('click', function() {
-		
+
 		$.ajax({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -248,6 +265,44 @@ $(function() {
 
 	});
 
+	$('.show-delete').on('click', function() {
+		
+		id = $(this).parents('.rep-list').data('id');
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'GET',
+			url: 'users/' + id,
+			success: function( response ) {
+				$('#msg_firstname').html(response.first_name);
+			}
+		});
+
+	});
+
+	$('.btn-delete').on('click', function() {
+		console.log("asd");
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'PATCH',
+			url: 'users/delete/' + id,
+			data: {
+				'_method': 'PATCH',
+				'id': id,
+			},
+			success: function( response) {
+				console.log(response);
+			},
+			complete: function(response) {
+					$('.btn-modal-close').click();
+					window.location.href = '/rep';
+			}
+		});
+	});
+		
 });
 </script>
 @endsection
