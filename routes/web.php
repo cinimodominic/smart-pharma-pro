@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +23,7 @@ Route::get('/rep', 'RepController@index')->name('rep');
 Route::get('/script', 'ScriptController@index')->name('script');
 
 Route::post('/rep', 'RepController@store');
+
+Route::get('/users', 'RepController@users')->middleware('auth');
+Route::get('/users/{user}', 'RepController@show')->middleware('auth');
+Route::patch('/users/{user}', 'RepController@update');

@@ -77,9 +77,15 @@ class RepController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return [
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'company_name' => $user->company_name,
+            'email' => $user->email,
+            'role' => $user->roles()->first()->name
+        ];
     }
 
     /**
@@ -102,7 +108,17 @@ class RepController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->company_name = $request->company_name;
+        $user->email = $request->email;
+        $user->syncRoles($request->role);
+
+        $user->save();
+
+        session()->flash('message', 'Successfully updated!');
     }
 
     /**
@@ -114,5 +130,10 @@ class RepController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function users()
+    {
+        return User::all();
     }
 }

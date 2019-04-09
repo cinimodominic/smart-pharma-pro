@@ -101,7 +101,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Name</th>
@@ -113,14 +113,14 @@
                 </thead>
                 <tbody>
 									@foreach($users as $user)
-									<tr data-id="{{ $user->id }}">
+									<tr class="rep-list" data-id="{{ $user->id }}">
 										<td>{{ $user->fullName() }}</td>
 										<td>{{ $user->company_name }}</td>
 										<td>{{ $user->email }}</td>
 										<td>{{ ucwords($user->roles->first()->name) }}</td>
 										<td>
 												<div class="btn-group">
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
+													<button type="button" class="btn btn-default btn-edit" data-toggle="modal" data-target="#modal-success">Edit</button>
 													<button type="button" class="btn btn-warning">Delete</button>
 												</div>
 											</td>
@@ -149,26 +149,27 @@
 										<div class="box-body">
 												<div class="form-group">
 														<label for="exampleInputEmail1">First Name</label>
-														<input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name">
+														<input type="text" class="form-control" id="modal_first_name" placeholder="First Name..." name="first_name">
 												</div>
 												<div class="form-group">
 														<label for="exampleInputPassword1">Last Name</label>
-														<input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name">
+														<input type="text" class="form-control" id="modal_last_name" placeholder="Last Name..." name="last_name">
 												</div>
 												<div class="form-group">
 														<label for="exampleInputPassword1">Company Name</label>
-														<input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name">
+														<input type="text" class="form-control" id="modal_company_name" placeholder="Company Name..." name="company_name">
 												</div>
 												<div class="form-group">
 														<label for="exampleInputEmail1">Email Address</label>
-														<input type="email" class="form-control" id="email" placeholder="Email..." name="email">
+														<input type="email" class="form-control" id="modal_email" placeholder="Email..." name="email">
 												</div>
 												<!-- radio -->
 												<div class="form-group">
 													<label>Select Role</label>
-													<select class="form-control" name="role_id">
-														<option value="1">Admin</option>
-														<option value="2">User</option>
+													<select class="form-control" name="role" id="modal_role">
+															@foreach($roles as $role)
+															<option value="{{ $role->name }}">{{ ucwords($role->name) }}</option>
+															@endforeach
 													</select>
 												</div>
 										</div>
@@ -176,8 +177,8 @@
 									</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-default">Update</button>
+							<button type="button" class="btn btn-default btn-modal-close" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default btn-update">Update</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -190,4 +191,63 @@
 </div>
 <!-- /.content-wrapper -->
 
+@endsection
+
+@section('script')
+<script>
+$(function() {
+
+	var id = 0;
+
+	$('.btn-edit').on('click', function() {
+
+		id = $(this).parents('.rep-list').data('id');
+		
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'GET',
+			url: 'users/' + id,
+			success: function( response ) {
+				$('#modal_first_name').val(response.first_name);
+				$('#modal_last_name').val(response.last_name);
+				$('#modal_company_name').val(response.company_name);
+				$('#modal_email').val(response.email);
+			$('#modal_role').val(response.role);
+			}
+		});
+
+	});
+
+	$('.btn-update').on('click', function() {
+		
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'PATCH',
+			url: 'users/' + id,
+			data: {
+				'_method': 'PATCH',
+				'id': id,
+				'first_name': $('#modal_first_name').val(),
+				'last_name': $('#modal_last_name').val(),
+				'company_name': $('#modal_company_name').val(),
+				'email': $('#modal_email').val(),
+				'role': $('#modal_role').val()
+			},
+			success: function( response) {
+				console.log(response);
+			},
+			complete: function(response) {
+					$('.btn-modal-close').click();
+					window.location.href = '/rep';
+			}
+		});
+
+	});
+
+});
+</script>
 @endsection
