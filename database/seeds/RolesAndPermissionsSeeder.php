@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\User;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -19,5 +20,10 @@ class RolesAndPermissionsSeeder extends Seeder
         // Create two roles
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'user']);
+        
+        // Assign admin to both initialized users (Kiel, Doms)
+        foreach(User::all() as $user) {
+            $user->assignRole('admin');
+        }
     }
 }

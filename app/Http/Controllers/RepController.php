@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Representative;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class RepController extends Controller
 {
@@ -23,7 +24,7 @@ class RepController extends Controller
     {
         return view('rep', [
             'roles' => Role::all(),
-            'representatives' => Representative::all()
+            'users' => User::all()
         ]);
     }
 
@@ -46,21 +47,24 @@ class RepController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|max:60',
-            'last_name' => 'required|max:60',
-            'company_name' => 'nullable',
-            'email' => 'required|unique:representatives'
+            'first_name' => ['required', 'string', 'max:60'],
+            'last_name' => ['required', 'string', 'max:60'],
+            'company_name' => ['nullable', 'string'],
+            'email' => ['required', 'string', 'email', 'min:8', 'max:60', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
-        $representative = new Representative;
+        $user = new User;
 
-        $representative->first_name = $request->first_name;
-        $representative->last_name = $request->last_name;
-        $representative->company_name = $request->company_name;
-        $representative->email = $request->email;
-        $representative->assignRole($request->role);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->company_name = $request->company_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
-        $representative->save();
+        $user->assignRole($request->role);
+
+        $user->save();
 
         session()->flash('message', 'Representative created.');
 

@@ -31,21 +31,29 @@
 											@csrf
 											<div class="box-body">
 											    <div class="form-group">
-											        <label for="exampleInputEmail1">First Name</label>
+											        <label for="firstName">First Name</label>
 											        <input type="text" class="form-control" id="first_name" placeholder="First Name..." name="first_name" value="{{ old('first_name') }}">
 											    </div>
 											    <div class="form-group">
-											        <label for="exampleInputPassword1">Last Name</label>
+											        <label for="lastName">Last Name</label>
 											        <input type="text" class="form-control" id="last_name" placeholder="Last Name..." name="last_name" value="{{ old('last_name') }}">
 											    </div>
 											    <div class="form-group">
-											        <label for="exampleInputPassword1">Company Name</label>
+											        <label for="companyName">Company Name</label>
 											        <input type="text" class="form-control" id="company_name" placeholder="Company Name..." name="company_name" value="{{ old('company_name') }}">
 											    </div>
 											    <div class="form-group">
-											        <label for="exampleInputEmail1">Email Address</label>
+											        <label for="emailAddress">Email Address</label>
 											        <input type="email" class="form-control" id="email" placeholder="Email..." name="email" value="{{ old('email') }}">
-											    </div>
+													</div>
+													<div class="form-group">
+														<label for="password">Password</label>
+														<input type="password" class="form-control" id="password" placeholder="Password..." name="password">
+													</div>
+													<div class="form-group">
+														<label for="passwordConfirm">Confirm Password</label>
+														<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password...">
+													</div>
 											    <!-- radio -->
 											    <div class="form-group">
 														<label>Select Role</label>
@@ -104,12 +112,12 @@
                 </tr>
                 </thead>
                 <tbody>
-									@foreach($representatives as $representative)
-									<tr data-id="{{ $representative->id }}">
-										<td>{{ $representative->fullName() }}</td>
-										<td>{{ $representative->company_name }}</td>
-										<td>{{ $representative->email }}</td>
-										<td>{{ ucwords($representative->roles->first()->name) }}</td>
+									@foreach($users as $user)
+									<tr data-id="{{ $user->id }}">
+										<td>{{ $user->fullName() }}</td>
+										<td>{{ $user->company_name }}</td>
+										<td>{{ $user->email }}</td>
+										<td>{{ ucwords($user->roles->first()->name) }}</td>
 										<td>
 												<div class="btn-group">
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
