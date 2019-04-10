@@ -5,7 +5,7 @@
         
         <!-- /.login-logo -->
         <div class="login-box-body">
-          <div class="login-logo"><a href="/">Smart Pharma Pro</a></div>
+          <div class="login-logo"><a href="/">CRM</a></div>
           <p class="login-box-msg">Sign in to start your session</p>
       
           <form method="POST" action="{{ route('login') }}">

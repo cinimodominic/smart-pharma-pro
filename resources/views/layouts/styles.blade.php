@@ -20,6 +20,8 @@
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 <!-- Additional stylesheets if there's any -->
+<!-- Data tables -->
+<link rel="stylesheet" href="{{ asset('/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @yield('style')
 <!-- Global Stylesheet -->
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
