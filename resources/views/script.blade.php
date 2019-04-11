@@ -107,14 +107,8 @@
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="tab_2">
                             <div class="form-group">
-                                <label>Patient's name</label>
-                                <select class="form-control">
-                                    <option>Name 1</option>
-                                    <option>Name 2</option>
-                                    <option>Name 3</option>
-                                    <option>Name 4</option>
-                                    <option>Name 5</option>
-                                </select>
+                                <label for="sciptName">Search name</label>
+                                <input type="text" class="form-control" id="searchName" placeholder="Search name" name="searchName">
                             </div>
                             <div class="form-group">
                                 <div class="radio">
