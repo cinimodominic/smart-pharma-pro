@@ -14,6 +14,9 @@
         </ol>
     </section>
     <section class="content">
+        @if (Session::has('message'))
+            <div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4>{{ Session::get('message') }}</div>
+        @endif
         <div class="row">
             <!-- left column -->
             <div class="col-md-4">
@@ -25,8 +28,8 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
-                            <form role="form">
-                                
+                            <form role="form" method="POST" action="{{ action('ScriptController@store') }}" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -50,28 +53,28 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="scriptMemId">Member Id</label>
-                                    <input type="text" class="form-control" id="member_id" placeholder="Enter Member Id" name="scriptMemId">
+                                    <input type="text" class="form-control" id="member_id" placeholder="Enter Member Id" name="scriptMemberId">
                                 </div>
                                 <div class="form-group">
                                     <label for="scriptDob">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="scriptDob">
+                                    <input type="date" class="form-control" id="dob" name="scriptDateOfBirth">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cellpone number</label>
-                                    <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number" name="scriptCP">
+                                    <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number" name="scriptCellphoneNumber">
                                 </div>
                                 <!-- radio -->
                                 <!-- radio -->
                                 <div class="form-group">
                                     <div class="radio">
                                         <label>
-                                        <input type="radio" name="braceTypeRadios" id="rx" value="option1" checked>
+                                        <input type="radio" name="braceTypeRadios" id="rx" value="dme" checked>
                                         RX
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                        <input type="radio" name="braceTypeRadios" id="dme" value="option2">
+                                        <input type="radio" name="braceTypeRadios" id="dme" value="dme">
                                         DME
                                         </label>
                                     </div>
@@ -93,16 +96,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Upload prescription</label>
-                                    <input type="file" id="exampleInputFile" name="scriptPresc1">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" id="exampleInputFile" name="scriptPresc2">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" id="exampleInputFile" name="scriptPresc3">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" id="exampleInputFile" name="scriptPresc4">
+                                    <input type="file" id="exampleInputFile" name="scriptPrescription">
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

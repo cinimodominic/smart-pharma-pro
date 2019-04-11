@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Patient;
 
 class ScriptController extends Controller
 {
@@ -34,7 +35,24 @@ class ScriptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Patient::create([
+            'first_name' => $request->scriptFirstName,
+            'last_name' => $request->scriptLastName,
+            'address' => $request->scriptAddress,
+            'member_id' => $request->scriptMemberId,
+            'birthday' =>  $request->scriptDateOfBirth,
+            'cellphone_number' => $request->scriptCellphoneNumber
+        ]);
+
+        $request->validate([
+            'scriptPrescription' => 'image'
+        ]);
+
+        $request->scriptPrescription->store('public/prescription');
+
+        session()->flash('message', 'Patient has been created.');
+
+        return redirect('/script');
     }
 
     /**
