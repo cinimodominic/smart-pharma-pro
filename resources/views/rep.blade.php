@@ -282,7 +282,6 @@ $(function() {
 	});
 
 	$('.btn-delete').on('click', function() {
-		console.log("asd");
 		$.ajax({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
