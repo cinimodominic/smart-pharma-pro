@@ -33,7 +33,7 @@
                                     <div class="input-group">
                                         <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname">
                                         <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-flat" id="add-file"  data-toggle="modal" data-target="#existingPatient"><i class="fa fa-user-plus"></i></button>
+                                        <button type="button" class="btn btn-default btn-flat" data-toggle="modal" data-target="#existingPatient"><i class="fa fa-user-plus"></i></button>
                                         </span>
                                     </div>
                                 </div>
