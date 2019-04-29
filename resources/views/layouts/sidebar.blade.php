@@ -29,11 +29,12 @@
         <li class="{{ set_active('dashboard*') }}"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="{{ set_active('data*') }}"><a href="{{ route('data') }}"><i class="fa fa-users"></i> <span>Data</span></a></li>
         <li class="{{ set_active('rep*') }}"><a href="{{ route('rep') }}"><i class="fa fa-user"></i> <span>Representative</span></a></li>
+        <li class="{{ set_active('script*') }}" ><a href="{{ route('script') }}"><i class="fa fa-stethoscope"></i> <span>Script</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-stethoscope"></i> <span>Script</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+          <a href="#"><i class="fa fa-file-text-o"></i> <span>Forms</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
           <ul class="treeview-menu">
-            <li class="{{ set_active('script*') }}"><a href="{{ route('script') }}">Add Patient Informations</a></li>
-            <li><a href="pages/charts/morris.html">Add Prescriptions</a></li>
+            <li><a href="{{ route('genetic') }}">Genetic screening form</a></li>
+            <li><a href="#">DME form</a></li>
           </ul>
         </li>
       </ul>

@@ -21,6 +21,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/data', 'DataController@index')->name('data');
 Route::get('/rep', 'RepController@index')->name('rep');
 Route::get('/script', 'ScriptController@index')->name('script');
+Route::get('/genetic', 'GeneticController@index')->name('genetic');
 
 Route::post('/rep', 'RepController@store');
 
