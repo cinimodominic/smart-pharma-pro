@@ -19,33 +19,27 @@
         @endif
         <div class="row">
             <!-- left column -->
-            <div class="col-md-4">
-                <!-- Custom Tabs -->
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">New Patient</a></li>
-                    <li><a href="#tab_2" data-toggle="tab">Existing Patient</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1">
-                            <form role="form" method="POST" action="{{ action('ScriptController@store') }}" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Patient Informations</h3>
+                    </div>
+                    <div class="box-body">
+                        <form role="form" method="POST" action="{{ action('ScriptController@store') }}" enctype="multipart/form-data">
+                            <div class="col-md-6">
                                 @csrf
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>First name</label>
-                                            <input type="text" class="form-control" id="firstname" placeholder="First name" name="scriptFirstName">
-                                        </div>
-                                        <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label for="lastname">Lastname</label>
+                                    <div class="input-group">
+                                        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname">
+                                        <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-flat" id="add-file"  data-toggle="modal" data-target="#existingPatient"><i class="fa fa-user-plus"></i></button>
+                                        </span>
                                     </div>
-                                    <!-- /.col -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Last name</label>
-                                            <input type="text" class="form-control" id="lastname" placeholder="Last name" name="scriptLastName">
-                                        </div>
-                                    <!-- /.form-group -->
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>First name</label>
+                                    <input type="text" class="form-control" id="firstname" placeholder="First name" name="scriptFirstName">
                                 </div>
                                 <div class="form-group">
                                     <label>Patient Address</label>
@@ -53,275 +47,122 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="scriptMemId">Member Id</label>
-                                    <input type="text" class="form-control" id="member_id" placeholder="Enter Member Id" name="scriptMemberId">
+                                    <input type="text" class="form-control" id="member_id" placeholder="Member ID" name="scriptMemberId">
                                 </div>
                                 <div class="form-group">
                                     <label for="scriptDob">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="scriptDateOfBirth">
+                                    <input type="date" class="form-control" id="dob" name="birthday">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cellpone number</label>
-                                    <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number" name="scriptCellphoneNumber">
-                                </div>
-                                <!-- radio -->
-                                <!-- radio -->
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                        <input type="radio" name="braceTypeRadios" id="rx" value="dme" checked>
-                                        RX
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                        <input type="radio" name="braceTypeRadios" id="dme" value="dme">
-                                        DME
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="leadType">
-                                    <div class="form-group">
-                                        <label>Brace Type</label>
-                                        <select class="form-control" name="scriptBrace">
-                                            <option>Back</option>
-                                            <option>Knee (left)</option>
-                                            <option>Knee (right)</option>
-                                            <option>Shoulder</option>
-                                            <option>Wrist(left)</option>
-                                            <option>Wrist(right)</option>
-                                            <option>Ankle(left)</option>
-                                            <option>Ankle(right)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Upload prescription</label>
-                                    <input type="file" id="exampleInputFile" name="scriptPrescription">
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.tab-pane -->
-                        <div class="tab-pane" id="tab_2">
-                            <div class="form-group">
-                                <label for="sciptName">Search name</label>
-                                <input type="text" class="form-control" id="searchName" placeholder="Search name" name="searchName">
-                            </div>
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label>
-                                    <input type="radio" name="braceTypeRadios2" id="rx2" value="option1" checked>
-                                    RX
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                    <input type="radio" name="braceTypeRadios2" id="dme2" value="option2">
-                                    DME
-                                    </label>
+                                    <input type="text" class="form-control" id="cp_number" placeholder="Cellphone number" name="scriptCellphoneNumber">
                                 </div>
                             </div>
-                            <div class="form-group" id="leadType2">
-                                <label>Brace Type</label>
-                                <select class="form-control">
-                                    <option>Back</option>
-                                    <option>Knee (left)</option>
-                                    <option>Knee (right)</option>
-                                    <option>Shoulder</option>
-                                    <option>Wrist(left)</option>
-                                    <option>Wrist(right)</option>
-                                    <option>Ankle(left)</option>
-                                    <option>Ankle(right)</option>
-                                </select>
-                            </div>
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                        <!-- /.tab-pane -->
-                    </div>
-                    <!-- /.tab-content -->
-                </div>
-                <!-- nav-tabs-custom -->
-            </div>
-            <!--/.col (right) -->
-            <div class="col-md-8">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Script List</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Member ID</th>
-                                    <th>DOB</th>
-                                    <th>Contact number</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>test@gmail.com</td>
-                                    <td>User</td>
-                                    <td>User</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-success">Edit</button>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                            <div class="col-md-6">
+                                
+                                <label for="scriptMemId">Prescription Type</label>
+                                <div class="col-md-12">
+                                    <div class="col-md-2">
+                                        <div class="radio">
+                                            <label>
+                                            <input type="radio" name="braceTypeRadios" id="rx" value="dme" checked>
+                                            RX
+                                            </label>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
-        <div class="modal modal-defaut fade" id="modal-delete">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Delete Script</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Are you sure you want to Delete?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-default">Delete</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-        <div class="modal modal-defaut fade" id="modal-success">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Edit Script</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form">
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>First name</label>
-                                        <input type="text" class="form-control" id="firstname" placeholder="First name">
                                     </div>
-                                    <!-- /.form-group -->
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Last name</label>
-                                        <input type="text" class="form-control" id="lastname" placeholder="Last name">
+                                    <div class="col-md-2">
+                                        <div class="radio">
+                                            <label>
+                                            <input type="radio" name="braceTypeRadios" id="dme" value="dme">
+                                            DME
+                                            </label>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-8">
+                                        <div class="form-group" id="leadType">
+                                            <div class="form-group">
+                                                <select class="form-control" name="scriptBrace">
+                                                    <option>Back</option>
+                                                    <option>Knee (left)</option>
+                                                    <option>Knee (right)</option>
+                                                    <option>Shoulder</option>
+                                                    <option>Wrist(left)</option>
+                                                    <option>Wrist(right)</option>
+                                                    <option>Ankle(left)</option>
+                                                    <option>Ankle(right)</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                <!-- /.form-group -->
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Patient Address</label>
-                                <textarea class="form-control" rows="3" placeholder="Patient address"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Member Id</label>
-                                <input type="email" class="form-control" id="member_id" placeholder="Enter Member Id">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Cellpone number</label>
-                                <input type="text" class="form-control" id="cp_number" placeholder="Enter cellphone number">
-                            </div>
-                            <!-- radio -->
-                            <!-- radio -->
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label>
-                                    <input type="radio" name="braceTypeRadiosEdit" id="rxEdit" value="option1" checked>
-                                    RX
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                    <input type="radio" name="braceTypeRadiosEdit" id="dmeEdit" value="option2">
-                                    DME
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="leadTypeEdit">
+
                                 <div class="form-group">
-                                    <label>Brace Type</label>
-                                    <select class="form-control">
-                                        <option>Back</option>
-                                        <option>Knee (left)</option>
-                                        <option>Knee (right)</option>
-                                        <option>Shoulder</option>
-                                        <option>Wrist(left)</option>
-                                        <option>Wrist(right)</option>
-                                        <option>Ankle(left)</option>
-                                        <option>Ankle(right)</option>
-                                    </select>
+                                    <label for="">Attach Prescription</label>
+                                    <div id="file-container" class="text-center">
+                                        <div class="input-group margin">
+                                            <input type="file" name="prescription-file" class="form-control" accept="image/x-png,image/gif,image/jpeg" >
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-flat" id="add-file"><i class="fa fa-plus"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Upload prescription</label>
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                            <div class="form-group">
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                            <div class="form-group">
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                            <div class="form-group">
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary btn-flat">Submit</button>
+                                </div>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-default">Update</button>
-                    </div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </section>
 </div>
 <!-- /.content-wrapper -->
 
-
-
-@endsection
+<!-- Modal -->
+<div class="modal fade" id="existingPatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Patient's list</h4>
+      </div>
+      <div class="modal-body">
+        <table id="table" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="rep-list">
+                        <td>1</td>
+                        <td>Juan dela Cruz</td>
+                    </tr>
+                    <tr class="rep-list">
+                        <td>2</td>
+                        <td>Juan dela Cruz</td>
+                    </tr>
+                    <tr class="rep-list">
+                        <td>3</td>
+                        <td>Juan dela Cruz</td>
+                    </tr>
+                    <tr class="rep-list">
+                        <td>4</td>
+                        <td>Juan dela Cruz</td>
+                    </tr>
+                </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for Existing Patients -->
+@endsection 
 
 @section('script')
 <script>
@@ -329,24 +170,85 @@
     $("#leadType2").hide();
     $("#leadTypeEdit").hide();
     $("#rx").click(function(){
-        $("#leadType").slideUp();
+        $("#leadType").hide();
     });
     $("#dme").click(function(){
-        $("#leadType").slideDown();
+        $("#leadType").show();
     });
 
     $("#rx2").click(function(){
-        $("#leadType2").slideUp();
+        $("#leadType2").hide();
     });
     $("#dme2").click(function(){
-        $("#leadType2").slideDown();
+        $("#leadType2").show();
     });
 
     $("#rxEdit").click(function(){
-        $("#leadTypeEdit").slideUp();
+        $("#leadTypeEdit").hide();
     });
     $("#dmeEdit").click(function(){
-        $("#leadTypeEdit").slideDown();
+        $("#leadTypeEdit").show();
     });
+
+    $(".attach-file").change(function(){
+        console.log($(this).data("prescription"));
+        readURL(this, $(this).data("prescription"));
+    });
+    $(".remove").click(function(){
+        $('#'+$(this).data("prescription"))
+                    .attr('src','/images/dummy.png')
+                    .width("100%")
+                    .height(186);
+    });
+
+    function readURL(input, prescriptionNum) {
+        console.log(input);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#'+prescriptionNum)
+                    .attr('src', e.target.result)
+                    .width("100%")
+                    .height(186);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    var file_input = "<div class='input-group margin'><input type='file' name='prescription-file' class='form-control' accept='image/x-png,image/gif,image/jpeg'><span class='input-group-btn'><button type='button' class='btn btn-default btn-flat remove-file'><i class='fa fa-minus'></i></button></span></div>";
+    
+   
+    
+    $(document).ready(function(){
+        $("#add-file").click(function(){
+            $("#file-container").prepend(file_input);
+        });
+
+        $(document).on("click",".remove-file", function(){
+            $(this).parent().parent().remove();
+        });
+    });
+
+    $(document).on('change', '.input-group', function() {
+		id = $(this).parents('.rep-list').data('id');
+		
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'GET',
+			url: 'script/upload',
+			success: function( response ) {
+				$('#modal_first_name').val(response.first_name);
+				$('#modal_last_name').val(response.last_name);
+				$('#modal_company_name').val(response.company_name);
+				$('#modal_email').val(response.email);
+			$('#modal_role').val(response.role);
+			}
+		});
+
+	});
 </script>
 @endsection('script')

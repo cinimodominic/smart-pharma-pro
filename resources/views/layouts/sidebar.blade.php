@@ -26,10 +26,16 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>  
-        <li class="{{ set_active('dashboard*') }}"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="{{ set_active('data*') }}"><a href="/data"><i class="fa fa-users"></i> <span>Data</span></a></li>
-        <li class="{{ set_active('rep*') }}"><a href="/rep"><i class="fa fa-user"></i> <span>Representative</span></a></li>
-        <li class="{{ set_active('script*') }}"><a href="/script"><i class="fa fa-file-text-o"></i> <span>Script</span></a></li>
+        <li class="{{ set_active('dashboard*') }}"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="{{ set_active('data*') }}"><a href="{{ route('data') }}"><i class="fa fa-users"></i> <span>Data</span></a></li>
+        <li class="{{ set_active('rep*') }}"><a href="{{ route('rep') }}"><i class="fa fa-user"></i> <span>Representative</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-stethoscope"></i> <span>Script</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+          <ul class="treeview-menu">
+            <li class="{{ set_active('script*') }}"><a href="{{ route('script') }}">Add Patient Informations</a></li>
+            <li><a href="pages/charts/morris.html">Add Prescriptions</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
