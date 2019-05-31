@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('dashboard') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini">BP</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Smart</b>PharmaPro</span>
+      <span class="logo-lg"><b>Bright</b>Pharmaceuticals</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -19,7 +19,7 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <!-- <span class="label label-success">4</span> -->
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
@@ -96,7 +96,7 @@
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <!-- <span class="label label-warning">10</span> -->
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
@@ -138,7 +138,7 @@
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <!-- <span class="label label-danger">9</span> -->
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
