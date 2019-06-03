@@ -302,6 +302,13 @@ $(function() {
 		});
 	});
 		
+	$(function () {
+    $('#table').DataTable({
+      'paging'      : true,
+      'searching'   : true,
+      'ordering'    : true
+    })
+  })
 });
 </script>
 @endsection

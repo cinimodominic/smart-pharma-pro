@@ -30,13 +30,7 @@
         <li class="{{ set_active('data*') }}"><a href="{{ route('data') }}"><i class="fa fa-users"></i> <span>Data</span></a></li>
         <li class="{{ set_active('rep*') }}"><a href="{{ route('rep') }}"><i class="fa fa-user"></i> <span>Representative</span></a></li>
         <li class="{{ set_active('script*') }}" ><a href="{{ route('script') }}"><i class="fa fa-stethoscope"></i> <span>Script</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span>Forms</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('genetic') }}">Genetic screening form</a></li>
-            <li><a href="#">DME form</a></li>
-          </ul>
-        </li>
+        <li class="{{ set_active('genetic*') }}" ><a href="{{ route('genetic') }}"><i class="fa fa-file-text-o"></i> <span>Genetic Screening Form</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
